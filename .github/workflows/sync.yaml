@@ -17,6 +17,11 @@ jobs:
             -e BOOK_DB_ID=${{ vars.BOOK_DB_ID }}
             -e NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}
 
+      - name: Handle Notion API Rate Limits
+        run: |
+          # Aquí podrías agregar un script para dividir los datos en fragmentos
+          node /code/dist/split-highlights.js # Si tienes un script para dividir los datos antes de enviarlos
+
       - name: Commit cache changes
         uses: EndBug/add-and-commit@v7
         with:
